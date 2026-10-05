@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top Label Studio · Diseña tu etiqueta en 3D</title>
+  <meta name="description" content="Diseña tu etiqueta, caja o etiqueta textil en 3D. Elige material, acabado y tipografía, sube tu logo y cotiza al instante.">
+  <meta name="theme-color" content="#060b1a">
+  <link rel="icon" href="assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Top Label Studio · Diseña tu etiqueta en 3D">
+  <meta property="og:description" content="Elige envase, material y acabado, sube tu logo y cotiza al instante.">
+  <meta property="og:url" content="https://carlosbernabb.github.io/toplabel/configurador.html">
+  <meta property="og:image" content="https://carlosbernabb.github.io/toplabel/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_MX">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="noindex">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/theme.js"></script>
+</head>
+<body class="cfg-page">
+
+<header class="nav solid">
+  <div class="nav-inner" style="padding:0 24px">
+    <div style="display:flex;align-items:center;gap:22px">
+      <a href="index.html" class="logo" aria-label="Volver al inicio"><img src="assets/logo.png" alt="Top Label"></a>
+      <span style="color:var(--muted);font-size:14px;border-left:1px solid var(--line-2);padding-left:20px" class="studio-name">Studio · Configurador 3D</span>
+    </div>
+    <div class="nav-cta">
+      <a href="index.html" class="btn btn-ghost btn-sm">← Sitio</a>
+      <button class="btn btn-ghost btn-sm cart-btn" id="openCart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+        Pedido <span class="cart-count" id="cartCount"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="cfg">
+  <!-- ========== PANEL LATERAL ========== -->
+  <aside class="cfg-side">
+    <nav class="tabs" id="tabs">
+      <button class="tab on" data-i="0"><span class="n">1</span>Producto</button>
+      <button class="tab" data-i="1"><span class="n">2</span>Material</button>
+      <button class="tab" data-i="2"><span class="n">3</span>Diseño</button>
+      <button class="tab" data-i="3"><span class="n">4</span>Medidas</button>
+      <button class="tab" data-i="4"><span class="n">5</span>Pedido</button>
+    </nav>
+
+    <div class="panes">
+      <!-- 1 PRODUCTO -->
+      <section class="pane on">
+        <h3>¿Para qué es tu etiqueta?</h3>
+        <p class="hint">Elige el envase y lo verás en 3D a la derecha.</p>
+        <div class="opts three" id="optProduct"></div>
+        <div class="group" id="grpContainer"><span class="lbl">Envase</span><div class="chips" id="optContainer"></div></div>
+        <div class="row" id="grpCap">
+          <div class="group"><span class="lbl">Color de tapa</span><label class="color-in"><input type="color" data-k="capColor"><span></span></label></div>
+          <div class="group" id="grpLiquid"><span class="lbl">Contenido</span><label class="color-in"><input type="color" data-k="liquidColor"><span></span></label></div>
+        </div>
+        <label class="toggle" id="grpLiquidT"><span>Mostrar contenido dentro del envase</span><input type="checkbox" data-k="liquid"><span class="sw"></span></label>
+      </section>
+
+      <!-- 2 MATERIAL -->
+      <section class="pane">
+        <h3>Material</h3>
+        <p class="hint">Cada material cambia el brillo, la textura y el precio.</p>
+        <div class="opts" id="optMaterial"></div>
+        <h3 style="margin-top:6px">Acabado</h3>
+        <div class="opts" id="optFinish"></div>
+      </section>
+
+      <!-- 3 DISEÑO -->
+      <section class="pane">
+        <h3>Tu diseño</h3>
+        <p class="hint">Sube tu logo o tu arte completo, y personaliza textos y colores.</p>
+
+        <div class="group">
+          <span class="lbl">Imagen</span>
+          <label class="drop" id="drop">
+            <input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <b>Arrastra tu imagen o haz clic</b>
+            <small>PNG con fondo transparente, JPG, WEBP o SVG</small>
+          </label>
+          <div class="chips" id="optImageMode">
+            <button class="chipbtn" data-v="logo">Logo / imagen</button>
+            <button class="chipbtn" data-v="full">Arte completo (llena la etiqueta)</button>
+          </div>
+        </div>
+        <div id="grpLogo" class="group" style="gap:14px">
+          <div class="group"><span class="lbl">Tamaño <output id="oImgScale"></output></span><input type="range" min="0.08" max="0.9" step="0.01" data-k="imgScale"></div>
+          <div class="row">
+            <div class="group"><span class="lbl">Horizontal</span><input type="range" min="0" max="1" step="0.01" data-k="imgX"></div>
+            <div class="group"><span class="lbl">Vertical</span><input type="range" min="0" max="1" step="0.01" data-k="imgY"></div>
+          </div>
+        </div>
+
+        <div class="group">
+          <span class="lbl">Nombre / título</span>
+          <input class="input" data-k="title" maxlength="40" placeholder="Nombre de tu producto">
+        </div>
+        <div class="row">
+          <div class="group"><span class="lbl">Tipografía</span><select class="select" data-k="titleFont" id="selFont"></select></div>
+          <div class="group"><span class="lbl">Color</span><label class="color-in"><input type="color" data-k="titleColor"><span></span></label></div>
+        </div>
+        <div class="group"><span class="lbl">Tamaño del título <output id="oTitleSize"></output></span><input type="range" min="0.1" max="0.5" step="0.01" data-k="titleSize"></div>
+        <div class="row">
+          <div class="group"><span class="lbl">Subtítulo</span><input class="input" data-k="subtitle" maxlength="40" placeholder="Variedad, sabor…"></div>
+          <div class="group"><span class="lbl">Color</span><label class="color-in"><input type="color" data-k="subColor"><span></span></label></div>
+        </div>
+        <div class="group"><span class="lbl">Texto pequeño</span><input class="input" data-k="details" maxlength="60" placeholder="Contenido neto, origen…"></div>
+        <div class="row">
+          <div class="group"><span class="lbl">Alineación</span><div class="chips" id="optAlign"><button class="chipbtn" data-v="center">Centro</button><button class="chipbtn" data-v="left">Izquierda</button></div></div>
+          <div class="group"><span class="lbl">Posición del texto</span><input type="range" min="-0.25" max="0.15" step="0.01" data-k="textY"></div>
+        </div>
+
+        <div class="group">
+          <span class="lbl">Fondo</span>
+          <div class="chips" id="optBg">
+            <button class="chipbtn" data-v="natural">Del material</button>
+            <button class="chipbtn" data-v="solid">Color sólido</button>
+            <button class="chipbtn" data-v="gradient">Degradado</button>
+          </div>
+          <div class="row" id="grpBgColors">
+            <label class="color-in"><input type="color" data-k="bg1"><span></span></label>
+            <label class="color-in" id="bg2wrap"><input type="color" data-k="bg2"><span></span></label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="toggle"><span>Marco decorativo</span><input type="checkbox" data-k="frame"><span class="sw"></span></label>
+          <label class="color-in"><input type="color" data-k="frameColor"><span>Color del marco</span></label>
+        </div>
+      </section>
+
+      <!-- 4 MEDIDAS -->
+      <section class="pane">
+        <h3>Forma y medidas</h3>
+        <div class="group"><span class="lbl">Forma de corte</span><div class="chips" id="optShape"></div></div>
+        <div class="row" id="grpDims">
+          <div class="group"><span class="lbl" id="lblW">Ancho (mm)</span><input class="input" type="number" min="15" max="400" data-k="w"></div>
+          <div class="group"><span class="lbl" id="lblH">Alto (mm)</span><input class="input" type="number" min="15" max="400" data-k="h"></div>
+          <div class="group" id="grpD" style="display:none"><span class="lbl">Fondo (mm)</span><input class="input" type="number" min="15" max="300" data-k="d"></div>
+        </div>
+        <p class="hint" id="wrapHint" style="margin-top:-10px"></p>
+        <div class="group" id="grpPos"><span class="lbl">Altura en el envase</span><input type="range" min="0" max="1" step="0.01" data-k="posY"></div>
+
+        <h3 style="margin-top:6px">Cantidad</h3>
+        <div class="tiers" id="tiers"></div>
+        <div class="group"><span class="lbl">Otra cantidad</span><input class="input" type="number" min="500" step="100" data-k="qty"></div>
+        <div class="group" id="grpPres"><span class="lbl">Presentación</span>
+          <div class="chips" id="optPres"><button class="chipbtn" data-v="rollo">Rollo para aplicadora</button><button class="chipbtn" data-v="rollo-manual">Rollo aplicación manual</button><button class="chipbtn" data-v="hojas">Hojas</button></div>
+        </div>
+      </section>
+
+      <!-- 5 PEDIDO -->
+      <section class="pane">
+        <h3>Revisa tu pedido</h3>
+        <div class="summary" id="summary"></div>
+        <div class="summary" id="breakdown"></div>
+        <div class="group"><span class="lbl">Notas para producción (opcional)</span><textarea class="textarea" id="notes" placeholder="Ej. número de tintas Pantone, sentido de salida, fecha requerida…"></textarea></div>
+        <button class="btn btn-primary" id="addCart">Agregar al pedido</button>
+        <button class="btn btn-ghost" id="dlMock">Descargar mockup (PNG)</button>
+        <p class="hint" style="margin-top:0">El precio es un estimado. Un asesor revisa tu arte y te envía la prueba de color antes de imprimir.</p>
+      </section>
+    </div>
+
+    <div class="side-foot">
+      <button class="btn btn-ghost btn-sm" id="prev">Anterior</button>
+      <button class="btn btn-primary btn-sm" id="next">Siguiente</button>
+    </div>
+  </aside>
+
+  <!-- ========== ESCENARIO ========== -->
+  <section class="cfg-stage" id="stage">
+    <div class="viewer3d" id="viewer">
+      <div class="stage-ui">
+        <div class="seg" id="viewMode">
+          <button class="on" data-v="3d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 5v8l-9 5-9-5V8z"/><path d="M12 13l9-5M12 13v8M12 13L3 8"/></svg>3D</button>
+          <button data-v="2d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2" stroke-dasharray="3 2"/></svg>Plano</button>
+        </div>
+        <div style="display:flex;gap:8px">
+          <div class="seg bgdots" id="bgPick" title="Fondo del escenario">
+            <button class="on" data-v="" style="background:#16244d"></button>
+            <button data-v="light" style="background:#eef1f5"></button>
+            <button data-v="warm" style="background:#5a4636"></button>
+          </div>
+          <div class="seg">
+            <button id="rotBtn" class="on" title="Girar automáticamente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></button>
+            <button id="shotBtn" title="Descargar imagen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="flat2d" id="flat">
+        <div class="flat-wrap" id="flatWrap">
+          <span class="dim w" id="dimW"></span><span class="dim h" id="dimH"></span>
+          <div class="dieline" id="dieline"></div>
+          <div class="legend"><span><i></i>Línea de corte (suaje)</span><span>Deja 2 mm de rebase en tu arte final</span></div>
+        </div>
+      </div>
+      <div class="loading" id="loading"><div class="spinner"></div></div>
+      <div class="stage-hint" id="hint">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 13V4.5a1.5 1.5 0 0 1 3 0V12M11 11.5v-2a1.5 1.5 0 0 1 3 0V12M14 10.5a1.5 1.5 0 0 1 3 0V12M17 11.5a1.5 1.5 0 0 1 3 0V16a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L4.3 15a1.5 1.5 0 0 1 2.5-1.7L8 15"/></svg>
+        Arrastra para girar · rueda para acercar
+      </div>
+    </div>
+
+    <div class="quote-bar">
+      <div class="qitem"><small>Precio unitario</small><b id="qUnit">—</b></div>
+      <div class="qitem"><small>Cantidad</small><b id="qQty">—</b></div>
+      <div class="qitem"><small>Entrega estimada</small><b id="qDays">—</b></div>
+      <div class="qitem total"><small>Total estimado (IVA incl.)</small><b id="qTotal">—</b></div>
+      <span class="spacer"></span>
+      <span class="note">Incluye placas y suaje. Precio sujeto a revisión de arte.</span>
+      <button class="btn btn-primary" id="addCart2">Agregar al pedido</button>
+    </div>
+  </section>
+</main>
+
+<!-- ========== CARRITO ========== -->
+<aside class="drawer" id="drawer" aria-label="Tu pedido">
+  <div class="drawer-head"><h3>Tu pedido</h3><button class="x" id="closeCart" aria-label="Cerrar">×</button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot"></div>
+</aside>
+<div class="drawer-bg" id="drawerBg"></div>
+<div class="toast" id="toast"></div>
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script defer src="js/core.js"></script>
+<script defer src="js/configurador.js"></script>
+</body>
+</html>
