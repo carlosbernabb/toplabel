@@ -456,8 +456,8 @@ input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 
 @keyframes pop { from { transform: scale(0); } }
 .folio { font-family: ui-monospace, monospace; padding: 8px 14px; border-radius: 10px; background: rgba(255, 255, 255, .06); border: 1px solid var(--line-2); }
 
-.toast { position: fixed; left: 50%; bottom: 30px; transform: translate(-50%, 140%); background: var(--text); color: var(--bg); padding: 14px 22px; border-radius: 999px; font-weight: 600; font-size: 14.5px; z-index: 90; transition: transform .4s cubic-bezier(.2, 1.4, .4, 1); display: flex; gap: 10px; align-items: center; box-shadow: var(--shadow); }
-.toast.show { transform: translate(-50%, 0); }
+.toast { position: fixed; left: 50%; bottom: 30px; transform: translate(-50%, 220%); opacity: 0; pointer-events: none; background: var(--text); color: var(--bg); padding: 14px 22px; border-radius: 999px; font-weight: 600; font-size: 14.5px; z-index: 90; transition: transform .4s cubic-bezier(.2, 1.4, .4, 1); display: flex; gap: 10px; align-items: center; box-shadow: var(--shadow); }
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 1080px) {
@@ -482,7 +482,7 @@ input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 
   .nav-cta .btn-primary .t { display: none; }
   .cfg-page { height: auto; overflow: visible; }
   .cfg { grid-template-columns: 1fr; }
-  .cfg-stage { order: -1; height: 62vh; position: sticky; top: 0; z-index: 5; }
+  .cfg-stage { order: -1; height: 52vh; position: sticky; top: 0; z-index: 5; }
   .cfg-side { border-right: 0; }
   .panes { overflow: visible; }
   .quote-bar { gap: 16px; padding: 12px 16px; }
